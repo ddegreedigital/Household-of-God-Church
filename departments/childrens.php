@@ -8,52 +8,173 @@
   <title>Children's Department</title>
   <link rel="stylesheet" href="../css/style.css" />
   <script defer src="../js/script.js"></script>
-  <!-- CDN LINKS -->
   <link rel="stylesheet" href="https://cdn.lineicons.com/3.0/lineicons.css" />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <script
-    defer
-    src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+
+  <style>
+    .church-section {
+      padding: 60px 0;
+    }
+
+    .church-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #212529;
+    }
+
+    .hod-section {
+      text-align: center;
+    }
+
+    .hod-card {
+      background: #fff;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hod-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .hod-section img {
+      max-width: 250px;
+      width: 100%;
+      height: auto;
+      border-radius: 15px;
+      border: 3px solid #212529;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-bottom: 1.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    .hod-section img:hover {
+      transform: scale(1.05);
+    }
+
+    .church-text-card {
+      background: #fff;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      height: 100%;
+    }
+
+    .church-text-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .church-text {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #6C757D;
+    }
+
+    .hod-section h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #212529;
+      margin-bottom: 1rem;
+    }
+
+    .hod-section p {
+      font-size: 1rem;
+      color: #6C757D;
+      margin-bottom: 1.5rem;
+    }
+
+    .hod-section a {
+      color: #212529;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .hod-section a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .church-title {
+        font-size: 2rem;
+      }
+
+      .hod-section img {
+        max-width: 200px;
+      }
+
+      .hod-section h2 {
+        font-size: 1.5rem;
+      }
+
+      .church-text {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .church-title {
+        font-size: 1.75rem;
+      }
+
+      .hod-section img {
+        max-width: 150px;
+      }
+
+      .hod-section h2 {
+        font-size: 1.25rem;
+      }
+
+      .church-text {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <?php renderHeader(); ?>
-  <?php renderBanner("Children's Department"); ?>
+  <?php
+  renderHeader();
+  renderBanner("Children's Department");
+  ?>
 
-  
-
-  <!-- THE DEPARTMENT -->
   <div class="container church-section">
     <h2 class="church-title pb-4 text-center">CHILDREN'S DEPARTMENT</h2>
     <div class="row align-items-stretch church-row">
-      <div class="col-md-5 hod-section align-items-center justify-content-center d-flex flex-column">
-        <h2>Meet Our Head of Department</h2>
-        <img src="../images/pastor.jpg" alt="Head of Department" class="mb-4">
-        <h2>Bro. John Doe</h2>
-        <p>The Benevolence Department is dedicated to supporting members in need and organizing outreach programs.</p>
-        <a href="mailto:benevolence@householdofgodchurch.org">benevolence@householdofgodchurch.org</a>
+      <div class="col-md-5 hod-section">
+        <div class="hod-card">
+          <img src="../images/pastor.jpg" alt="Head of Department" class="mb-4">
+          <h2>Bro. John Doe</h2>
+          <p>The Children's Department is dedicated to nurturing the spiritual growth of our young members through engaging and faith-based activities.</p>
+          <a href="mailto:childrens@householdofgodchurch.org">childrens@householdofgodchurch.org</a>
+        </div>
       </div>
       <div class="col-md-6 d-flex">
-        <div>
+        <div class="church-text-card">
           <p class="church-text">
-            The Benevolence Department coordinates the church’s efforts to provide assistance to those in need, both within and outside the church community.
+            The Children's Department at Household of God Church is committed to fostering a vibrant and nurturing environment for children to grow in faith. Our programs include Sunday School classes, Bible story sessions, and fun-filled activities designed to teach children about God's love and biblical principles.
             <br><br>
-            Activities include food drives, clothing donations, and emergency relief. The department works closely with other ministries to ensure that support reaches those who need it most.
+            We organize events such as children’s choir performances, holiday celebrations, and community outreach initiatives to encourage spiritual and personal development. Our dedicated team works closely with parents and other ministries to ensure a supportive and enriching experience for every child.
             <br><br>
-            If you would like to volunteer or know someone in need, please contact the department head.
+            If you would like to enroll your child, volunteer, or learn more about our programs, please contact our department head.
           </p>
         </div>
       </div>
     </div>
   </div>
 
-
   <?php renderFooter(); ?>
 </body>
+</html>

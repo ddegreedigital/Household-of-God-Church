@@ -1,497 +1,570 @@
 <?php include '../component.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Church Events</title>
-
-    <link rel="stylesheet" href="../css/style.css" />
-    <script defer src="../js/script.js"></script>
-    <link rel="stylesheet" href="https://cdn.lineicons.com/3.0/lineicons.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Details</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js" defer></script>
+    <style>
+        body { background-color: #f8f9fa; }
+        .event-section { margin-top: 5rem; margin-bottom: 5rem; }
+        .coordinator-img { width: 100%; border-radius: 1rem; object-fit: cover; }
+        .event-title { font-size: 2rem; font-weight: bold; color: #000000; }
+        .event-slogan { font-size: 1.1rem; color: #6c757d; font-style: italic; }
+        .event-description { font-size: 1.05rem; margin-top: 1rem; color: #333; }
+        .thumb-gallery img { width: 110px; height: 90px; object-fit: cover; border-radius: 8px; cursor: pointer; transition: transform 0.3s; }
+        .thumb-gallery img:hover { transform: scale(1.05); }
+        .modal-img { width: 100%; border-radius: 10px; object-fit: contain; }
+    </style>
 </head>
-
 <body>
-    <?php renderHeader(); ?>
+<?php renderHeader(); ?>
 
+<?php
+// =========================================
+// EVENT DATA (with PrayerMeeting added)
+// =========================================
 
+$eventData = [
+    "Grace" => [
+        [
+            "type" => "event",
+            "eventType" => "Grace",
+            "year" => "1990",
+            "title" => "Grace Programme",
+            "slogan" => "",
+            "description" => "A charity-driven programme instituted to extend care and sharing to the less privileged in society through recognized non-governmental organizations. It is a major benevolence channel of the ministry on an annual basis.",
+            "cordinator" => "Mr Cordinator",
+            "cordinatorImage" => "cordinator.jpeg",
+            "eventCategory" => "year",
+            "date" => "1990-12-01",
+            "month" => "December",
+            "images" => ["image1.jpg","image2.jpg","image3.jpg","image4.jpg","image5.jpg"]
+        ],
+        [
+            "type" => "event",
+            "eventType" => "Grace",
+            "year" => "2006",
+            "title" => "Grace Event",
+            "slogan" => "Grace Celebration 2006",
+            "description" => "A powerful grace event in 2006 focused on charity and community support.",
+            "cordinator" => "Event Coordinator 2006",
+            "cordinatorImage" => "cordinator.jpeg",
+            "eventCategory" => "year",
+            "date" => "2006-12-25",
+            "month" => "December",
+            "images" => ["image1.jpg","image2.jpg","image3.jpg","image4.jpg","image5.jpg"]
+        ],
+        [
+            "type" => "event",
+            "eventType" => "Grace",
+            "year" => "2007",
+            "title" => "Grace Event",
+            "slogan" => "Grace Celebration 2007",
+            "description" => "A powerful grace event in 2007 emphasizing benevolence and outreach.",
+            "cordinator" => "Event Coordinator 2007",
+            "cordinatorImage" => "cordinator.jpeg",
+            "eventCategory" => "year",
+            "date" => "2007-12-25",
+            "month" => "December",
+            "images" => ["image1.jpg","image2.jpg","image3.jpg","image4.jpg","image5.jpg"]
+        ],
+        [
+            "type" => "event",
+            "eventType" => "Grace",
+            "year" => "2008",
+            "title" => "Grace Event",
+            "slogan" => "Grace Celebration 2008",
+            "description" => "A powerful grace event in 2008 dedicated to supporting the less privileged.",
+            "cordinator" => "Event Coordinator 2008",
+            "cordinatorImage" => "cordinator.jpeg",
+            "eventCategory" => "year",
+            "date" => "2008-12-25",
+            "month" => "December",
+            "images" => ["image1.jpg","image2.jpg","image3.jpg","image4.jpg","image5.jpg"]
+        ],
+        [
+            "type" => "event",
+            "eventType" => "Grace",
+            "year" => "2008",
+            "title" => "Grace Event",
+            "slogan" => "Grace Celebration 2008",
+            "description" => "A powerful grace event in 2008 with additional community engagement.",
+            "cordinator" => "Event Coordinator 2008",
+            "cordinatorImage" => "cordinator.jpeg",
+            "eventCategory" => "year",
+            "date" => "2008-12-25",
+            "month" => "November",
+            "images" => ["image1.jpg","image2.jpg","image3.jpg","image4.jpg","image5.jpg"]
+        ],
+        [
+            "type" => "event",
+            "eventType" => "Grace",
+            "year" => "2017",
+            "title" => "Grace Event",
+            "slogan" => "Grace Celebration 2017",
+            "description" => "A powerful grace event in 2017 highlighting ministry benevolence.",
+            "cordinator" => "Event Coordinator 2017",
+            "cordinatorImage" => "cordinator.jpeg",
+            "eventCategory" => "year",
+            "date" => "2017-12-25",
+            "month" => "December",
+            "images" => ["image1.jpg","image2.jpg","image3.jpg","image4.jpg","image5.jpg"]
+        ],
+        [
+            "type" => "event",
+            "eventType" => "Grace",
+            "year" => "2017",
+            "title" => "Grace Event",
+            "slogan" => "Grace Celebration 2017",
+            "description" => "A powerful grace event in 2017 with spring focus.",
+            "cordinator" => "Event Coordinator 2017",
+            "cordinatorImage" => "cordinator.jpeg",
+            "eventCategory" => "year",
+            "date" => "2017-12-25",
+            "month" => "March",
+            "images" => ["image1.jpg","image2.jpg","image3.jpg","image4.jpg","image5.jpg"]
+        ],
+        [
+            "type" => "event",
+            "eventType" => "Grace",
+            "year" => "2025",
+            "title" => "Grace Event",
+            "slogan" => "Grace Celebration 2025",
+            "description" => "A powerful grace event in 2025 to support the community.",
+            "cordinator" => "Pastor Okorie A.",
+            "cordinatorImage" => "cordinator.jpeg",
+            "eventCategory" => "year",
+            "date" => "2025-12-25",
+            "month" => "December",
+            "images" => ["image1.jpg","image2.jpg","image3.jpg","image4.jpg","image5.jpg"]
+        ]
+    ],
+    "QueenEsther" => [
+        [
+            "type" => "event",
+            "eventType" => "Queen Esther",
+            "year" => "2006",
+            "title" => "Queen Esther Event",
+            "slogan" => "Queen Esther Celebration 2006",
+            "description" => "A empowering women's event in 2006 inspired by biblical Queen Esther.",
+            "cordinator" => "Women's Ministry Coordinator 2006",
+            "cordinatorImage" => "cordinator.jpeg",
+            "eventCategory" => "month",
+            "date" => "2006-03-25",
+            "month" => "March",
+            "images" => ["image1.jpg","image2.jpg","image3.jpg","image4.jpg","image5.jpg"]
+        ],
+        [
+            "type" => "event",
+            "eventType" => "Queen Esther",
+            "year" => "2007",
+            "title" => "Queen Esther Event",
+            "slogan" => "Queen Esther Celebration 2007",
+            "description" => "A powerful women's empowerment event in 2007.",
+            "cordinator" => "Women's Ministry Coordinator 2007",
+            "cordinatorImage" => "cordinator.jpeg",
+            "eventCategory" => "month",
+            "date" => "2007-03-25",
+            "month" => "March",
+            "images" => ["image1.jpg","image2.jpg","image3.jpg","image4.jpg","image5.jpg"]
+        ],
+        [
+            "type" => "event",
+            "eventType" => "Queen Esther",
+            "year" => "2008",
+            "title" => "Queen Esther Event",
+            "slogan" => "Queen Esther Celebration 2008",
+            "description" => "A transformative event for women in 2008.",
+            "cordinator" => "Women's Ministry Coordinator 2008",
+            "cordinatorImage" => "cordinator.jpeg",
+            "eventCategory" => "month",
+            "date" => "2008-03-25",
+            "month" => "March",
+            "images" => ["image1.jpg","image2.jpg","image3.jpg","image4.jpg","image5.jpg"]
+        ],
+        [
+            "type" => "event",
+            "eventType" => "Queen Esther",
+            "year" => "2017",
+            "title" => "Queen Esther Event",
+            "slogan" => "Queen Esther Celebration 2017",
+            "description" => "A significant women's ministry event in 2017.",
+            "cordinator" => "Women's Ministry Coordinator 2017",
+            "cordinatorImage" => "cordinator.jpeg",
+            "eventCategory" => "month",
+            "date" => "2017-03-25",
+            "month" => "March",
+            "images" => ["image1.jpg","image2.jpg","image3.jpg","image4.jpg","image5.jpg"]
+        ],
+        [
+            "type" => "event",
+            "eventType" => "Queen Esther",
+            "year" => "2017",
+            "title" => "Queen Esther Event",
+            "slogan" => "Queen Esther Celebration 2017",
+            "description" => "Spring extension of the Queen Esther programme in 2017.",
+            "cordinator" => "Women's Ministry Coordinator 2017",
+            "cordinatorImage" => "cordinator.jpeg",
+            "eventCategory" => "month",
+            "date" => "2017-03-25",
+            "month" => "April",
+            "images" => ["image1.jpg","image2.jpg","image3.jpg","image4.jpg","image5.jpg"]
+        ],
+        [
+            "type" => "event",
+            "eventType" => "Queen Esther",
+            "year" => "2017",
+            "title" => "Queen Esther Event",
+            "slogan" => "Queen Esther Celebration 2017",
+            "description" => "Autumn session of the Queen Esther event in 2017.",
+            "cordinator" => "Women's Ministry Coordinator 2017",
+            "cordinatorImage" => "cordinator.jpeg",
+            "eventCategory" => "month",
+            "date" => "2017-03-25",
+            "month" => "October",
+            "images" => ["image1.jpg","image2.jpg","image3.jpg","image4.jpg","image5.jpg"]
+        ]
+    ],
+    "HallelujahParty" => [
+        [
+            "type" => "event",
+            "eventType" => "Hallelujah Party",
+            "year" => "2022",
+            "title" => "Hallelujah Party",
+            "slogan" => "Praise and worship celebration",
+            "description" => "An electrifying night of praise, worship, and thanksgiving.",
+            "cordinator" => "Worship Coordinator 2022",
+            "cordinatorImage" => "cordinator.jpeg",
+            "eventCategory" => "year",
+            "date" => "2022-12-31",
+            "month" => "December",
+            "images" => ["image1.jpg","image2.jpg","image3.jpg","image4.jpg","image5.jpg"]
+        ],
+        [
+            "type" => "event",
+            "eventType" => "Hallelujah Party",
+            "year" => "2023",
+            "title" => "Hallelujah Party",
+            "slogan" => "Entering the new year with praise",
+            "description" => "Our annual New Year's Eve celebration with music and fellowship.",
+            "cordinator" => "Worship Coordinator 2023",
+            "cordinatorImage" => "cordinator.jpeg",
+            "eventCategory" => "year",
+            "date" => "2023-12-31",
+            "month" => "December",
+            "images" => ["image1.jpg","image2.jpg","image3.jpg","image4.jpg","image5.jpg"]
+        ]
+    ],
+    "FellowshipSunday" => [
+        [
+            "type" => "event",
+            "eventType" => "Fellowship Sunday",
+            "year" => "2023",
+            "title" => "Fellowship Sunday",
+            "slogan" => "A day of community and worship",
+            "description" => "Join us for a special service focused on fellowship and spiritual growth.",
+            "cordinator" => "Fellowship Coordinator 2023",
+            "cordinatorImage" => "cordinator.jpeg",
+            "eventCategory" => "month",
+            "date" => "2023-11-12",
+            "month" => "November",
+            "images" => ["image1.jpg","image2.jpg","image3.jpg","image4.jpg","image5.jpg"]
+        ],
+        [
+            "type" => "event",
+            "eventType" => "Fellowship Sunday",
+            "year" => "2024",
+            "title" => "Fellowship Sunday",
+            "slogan" => "Building bonds in Christ",
+            "description" => "A time to connect with one another and share in the Lord's grace.",
+            "cordinator" => "Fellowship Coordinator 2024",
+            "cordinatorImage" => "cordinator.jpeg",
+            "eventCategory" => "month",
+            "date" => "2024-05-19",
+            "month" => "May",
+            "images" => ["image1.jpg","image2.jpg","image3.jpg","image4.jpg","image5.jpg"]
+        ]
+    ],
+    "BabyDedication" => [
+        [
+            "type" => "event",
+            "eventType" => "Baby Dedication",
+            "year" => "2023",
+            "title" => "August Baby Dedication",
+            "slogan" => "Presenting our children to the Lord",
+            "description" => "A joyful event for families to dedicate their new babies to the church.",
+            "cordinator" => "Family Ministry Coordinator 2023",
+            "cordinatorImage" => "cordinator.jpeg",
+            "eventCategory" => "month",
+            "date" => "2023-08-20",
+            "month" => "August",
+            "images" => ["image1.jpg","image2.jpg","image3.jpg","image4.jpg","image5.jpg"]
+        ],
+        [
+            "type" => "event",
+            "eventType" => "Baby Dedication",
+            "year" => "2024",
+            "title" => "April Baby Dedication",
+            "slogan" => "Welcoming our little ones",
+            "description" => "A special service to dedicate our babies to God.",
+            "cordinator" => "Family Ministry Coordinator 2024",
+            "cordinatorImage" => "cordinator.jpeg",
+            "eventCategory" => "month",
+            "date" => "2024-04-14",
+            "month" => "April",
+            "images" => ["image1.jpg","image2.jpg","image3.jpg","image4.jpg","image5.jpg"]
+        ]
+    ],
+    "ChristmasCarol" => [
+        [
+            "type" => "event",
+            "eventType" => "Christmas Carol",
+            "year" => "2022",
+            "title" => "Christmas Carol Service",
+            "slogan" => "Celebrating the birth of Christ",
+            "description" => "A festive night of carols and readings.",
+            "cordinator" => "Music Ministry Coordinator 2022",
+            "cordinatorImage" => "cordinator.jpeg",
+            "eventCategory" => "month",
+            "date" => "2022-12-18",
+            "month" => "December",
+            "images" => ["image1.jpg","image2.jpg","image3.jpg","image4.jpg","image5.jpg"]
+        ],
+        [
+            "type" => "event",
+            "eventType" => "Christmas Carol",
+            "year" => "2023",
+            "title" => "Christmas Carol Service",
+            "slogan" => "Singing praises for His birth",
+            "description" => "Our annual Christmas Carol service with special performances.",
+            "cordinator" => "Music Ministry Coordinator 2023",
+            "cordinatorImage" => "cordinator.jpeg",
+            "eventCategory" => "month",
+            "date" => "2023-12-17",
+            "month" => "December",
+            "images" => ["image1.jpg","image2.jpg","image3.jpg","image4.jpg","image5.jpg"]
+        ]
+    ],
+    "YouthRally" => [
+        [
+            "type" => "event",
+            "eventType" => "Youth Rally",
+            "year" => "2024",
+            "title" => "Youth Rally",
+            "slogan" => "Empowering the next generation",
+            "description" => "A vibrant gathering for young believers to grow in faith.",
+            "cordinator" => "Youth Ministry Coordinator 2024",
+            "cordinatorImage" => "cordinator.jpeg",
+            "eventCategory" => "month",
+            "date" => "2024-06-15",
+            "month" => "June",
+            "images" => ["image1.jpg","image2.jpg","image3.jpg","image4.jpg","image5.jpg"]
+        ]
+    ],
+    "AnnualConference" => [
+        [
+            "type" => "event",
+            "eventType" => "Annual Conference",
+            "year" => "2024",
+            "title" => "Annual Conference",
+            "slogan" => "Gathering in His name",
+            "description" => "Our yearly conference for all members to unite and learn.",
+            "cordinator" => "Conference Coordinator 2024",
+            "cordinatorImage" => "cordinator.jpeg",
+            "eventCategory" => "year",
+            "date" => "2024-11-30",
+            "month" => "November",
+            "images" => ["image1.jpg","image2.jpg","image3.jpg","image4.jpg","image5.jpg"]
+        ]
+    ],
+    "KarisAward" => [
+        [
+            "type" => "event",
+            "eventType" => "Karis Award",
+            "year" => "1996",
+            "title" => "Karis Award",
+            "slogan" => "",
+            "description" => "Instituted in 1996, aimed at appreciating Nigerians who have positively impacted the nation but have not been recognized by the government. It is subsumed into the GRACE programme.",
+            "cordinator" => "Awards Coordinator 1996",
+            "cordinatorImage" => "cordinator.jpeg",
+            "eventCategory" => "year",
+            "date" => "1996-12-01",
+            "month" => "December",
+            "images" => ["image1.jpg","image2.jpg","image3.jpg","image4.jpg","image5.jpg"]
+        ]
+    ],
+    "PrayerMeeting" => [
+        [
+            "type" => "event",
+            "eventType" => "Prayer Meeting",
+            "year" => "2023",
+            "title" => "Prayer Meeting",
+            "slogan" => "A time of spiritual renewal",
+            "description" => "A gathering for prayer and intercession in March 2023.",
+            "cordinator" => "Prayer Coordinator 2023",
+            "cordinatorImage" => "cordinator.jpeg",
+            "eventCategory" => "month",
+            "date" => "2023-03-15",
+            "month" => "March",
+            "images" => ["image1.jpg","image2.jpg","image3.jpg","image4.jpg","image5.jpg"]
+        ]
+    ]
+];
 
-    <div class="container py-5 my-5">
-        <div class="text-center mb-5">
-            <h2 class="fw-bold text-warning mb-2">Explore Our Events</h2>
-            <p class="lead text-secondary">From monthly fellowships to special annual celebrations, find an event to be a part of.</p>
-        </div>
+// =========================================
+// LOGIC STARTS HERE
+// =========================================
+$imageBasePath = '../images/events/';
 
-        <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-3 mb-5">
-            <div class="position-relative flex-grow-1 w-100 w-md-auto">
-                <input type="text" id="searchInput" placeholder="Search events..." class="form-control rounded-pill ps-4 pe-5" onkeyup="filterEvents()">
-                <i class="fas fa-search text-muted position-absolute top-50 end-0 translate-middle-y me-3"></i>
+// Check if 'data' parameter exists in the URL
+if (isset($_GET['data'])) {
+    // Decode the JSON data
+    $data = json_decode(urldecode($_GET['data']), true);
+    $eventType = isset($data['event']) ? trim($data['event']) : '';
+    $monthFilter = isset($data['month']) ? trim($data['month']) : '';
+} else {
+    // Fallback to direct query parameters
+    $eventType = isset($_GET['event']) ? trim($_GET['event']) : '';
+    $monthFilter = isset($_GET['month']) ? trim($_GET['month']) : '';
+}
+
+$yearFilter = isset($_GET['year']) ? trim($_GET['year']) : '';
+
+// Normalize eventType to match $eventData keys (e.g., remove spaces)
+$eventType = str_replace(' ', '', $eventType); // e.g., "Prayer Meeting" -> "PrayerMeeting"
+
+if (empty($eventType) || !isset($eventData[$eventType])) {
+    echo "<div class='container text-center py-5 my-5'><h4 class='text-muted'>No events found for event type: " . htmlspecialchars($eventType) . "</h4></div>";
+    renderFooter();
+    exit;
+}
+
+// Step 1: Base events of this eventType
+$filteredEvents = $eventData[$eventType];
+
+// Step 2: If month is in URL, narrow it down
+if (!empty($monthFilter)) {
+    $filteredEvents = array_filter($filteredEvents, function($ev) use ($monthFilter) {
+        return strcasecmp($ev['month'], $monthFilter) === 0;
+    });
+}
+
+// Step 3: Extract all unique years from the filtered list
+$years = array_unique(array_column($filteredEvents, 'year'));
+sort($years, SORT_NUMERIC);
+
+// Step 4: Select current year (URL or default to latest)
+$currentYear = (!empty($yearFilter) && in_array($yearFilter, $years)) ? $yearFilter : end($years);
+
+// Step 5: Pick the current event for that year
+$currentEvent = null;
+foreach ($filteredEvents as $ev) {
+    if ($ev['year'] === $currentYear) {
+        $currentEvent = $ev;
+        break;
+    }
+}
+
+// If no event matched
+if (!$currentEvent) {
+    echo "<div class='container text-center py-5 my-5'><h4 class='text-muted'>No events found for the selected filters.</h4></div>";
+    renderFooter();
+    exit;
+}
+?>
+
+<div class="container event-section">
+    <div class="text-center mb-4">
+        <h2 class="fw-bold text-warning mb-2"><?= htmlspecialchars($eventType) ?> Event</h2>
+        <?php if (!empty($monthFilter)): ?>
+            <p class="text-secondary">Showing all <strong><?= htmlspecialchars($monthFilter) ?></strong> events</p>
+        <?php else: ?>
+            <p class="text-secondary">Select a year to view past editions.</p>
+        <?php endif; ?>
+        <form method="get" class="d-inline-block">
+            <input type="hidden" name="event" value="<?= htmlspecialchars($eventType) ?>">
+            <?php if ($monthFilter): ?>
+                <input type="hidden" name="month" value="<?= htmlspecialchars($monthFilter) ?>">
+            <?php endif; ?>
+            <select name="year" class="form-select d-inline-block w-auto rounded-pill" onchange="this.form.submit()">
+                <?php foreach ($years as $yr): ?>
+                    <option value="<?= htmlspecialchars($yr) ?>" <?= $yr == $currentYear ? 'selected' : '' ?>><?= htmlspecialchars($yr) ?></option>
+                <?php endforeach; ?>
+            </select>
+        </form>
+    </div>
+
+    <div class="row align-items-start gy-4">
+        <?php if (!empty($currentEvent['cordinatorImage'])): ?>
+            <div class="col-md-5">
+                <img src="<?= htmlspecialchars($imageBasePath . $currentEvent['cordinatorImage']) ?>" class="coordinator-img mb-3" alt="Coordinator" onerror="this.style.display='none';">
+                <h5 class="fw-bold mt-2"><?= htmlspecialchars($currentEvent['cordinator'] ?? 'N/A') ?></h5>
             </div>
-            <select id="monthFilter" class="form-select w-100 w-md-auto rounded-pill" onchange="filterEvents()">
-                <option value="">All Months</option>
-            </select>
-            <select id="yearFilter" class="form-select w-100 w-md-auto rounded-pill" onchange="filterEvents()">
-                <option value="">All Years</option>
-            </select>
-            <select id="eventTypeFilter" class="form-select w-100 w-md-auto rounded-pill" onchange="filterEvents()">
-                <option value="">All Events</option>
-                <option value="Fellowship Sunday">Fellowship Sunday</option>
-                <option value="Christmas Carol Competition">Christmas Carol Competition</option>
-                <option value="Halleluyah Party">Halleluyah Party</option>
-                <option value="Baby Dedication">Baby Dedication</option>
-                <option value="Weddings">Weddings</option>
-                <option value="Queen Esther">Queen Esther</option>
-                <option value="Grace">Grace</option>
-                <option value="Christmas Lights">Christmas Lights</option>
-            </select>
-        </div>
+        <?php endif; ?>
 
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="eventsGallery">
-            <div class="col-12 text-center text-muted py-5">
-                <p>Loading events...</p>
-            </div>
-        </div>
-        <div class="pagination mt-5">
-            <a href="#"><i class="fas fa-chevron-left"></i></a>
-            <a href="#" class="active">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <span>...</span>
-            <a href="#">14</a>
-            <a href="#">15</a>
-            <a href="#"><i class="fas fa-chevron-right"></i></a>
+        <div class="<?= !empty($currentEvent['cordinatorImage']) ? 'col-md-7' : 'col-md-12' ?>">
+            <h3 class="event-title"><?= htmlspecialchars($currentEvent['title'] ?? 'Untitled Event') ?></h3>
+            <?php if (!empty($currentEvent['slogan'])): ?>
+                <p class="event-slogan">"<?= htmlspecialchars($currentEvent['slogan']) ?>"</p>
+            <?php endif; ?>
+            <p class="event-description"><?= htmlspecialchars($currentEvent['description'] ?? 'No description available.') ?></p>
+            <p class="text-muted small mt-2">
+                <i class="fa-regular fa-calendar-days me-2"></i><?= htmlspecialchars($currentEvent['date'] ?? 'N/A') ?>
+            </p>
         </div>
     </div>
+
+    <div class="thumb-gallery d-flex flex-wrap gap-3 mt-5 justify-content-center">
+        <?php foreach ($currentEvent['images'] as $index => $img): ?>
+            <img src="<?= htmlspecialchars($imageBasePath . $img) ?>" alt="Event Image" onclick="openModal(<?= $index ?>)">
+        <?php endforeach; ?>
     </div>
+</div>
 
-    <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content rounded-4">
-                <div class="modal-header border-bottom-0">
-                    <h5 class="modal-title fw-bold text-dark" id="eventModalLabel"></h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center">
-                    <img id="modalMainImage" src="" class="img-fluid rounded-3 mb-3" alt="" />
-
-                    <div id="modalCarousel" class="d-flex justify-content-center gap-3 my-3">
-                    </div>
-
-                    <p id="modalEventType" class="text-muted small mb-1"></p>
-                    <p id="modalDate" class="text-muted small mb-1"></p>
-                    <p id="modalDescription" class="lead"></p>
-                </div>
+<!-- Modal Gallery -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-dark border-0">
+            <div class="modal-body text-center position-relative">
+                <img id="modalImage" src="" class="modal-img" alt="Event Image">
+                <button type="button" class="btn btn-light position-absolute top-50 start-0 translate-middle-y" style="border-radius:50%" onclick="prevImage()"><i class="fa fa-chevron-left"></i></button>
+                <button type="button" class="btn btn-light position-absolute top-50 end-0 translate-middle-y" style="border-radius:50%" onclick="nextImage()"><i class="fa fa-chevron-right"></i></button>
+                <button type="button" class="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
         </div>
     </div>
+</div>
 
-    <?php renderFooter(); ?>
+<?php renderFooter(); ?>
 
-    <script>
-        // Event data array for all event types
-        const eventData = [
-            // Fellowship Sunday
-            {
-                title: 'January Fellowship Sunday',
-                type: 'Fellowship Sunday',
-                date: 'January 2025',
-                month: 'January',
-                year: '2025',
-                description: 'A wonderful fellowship to start the new year.',
-                images: ['../images/ca1.png', '../images/ca3.png']
-            },
-            {
-                title: 'February Fellowship Sunday',
-                type: 'Fellowship Sunday',
-                date: 'February 2025',
-                month: 'February',
-                year: '2025',
-                description: 'Celebrating love and faith during our monthly fellowship.',
-                images: ['../images/pastor.jpg']
-            },
-            {
-                title: 'March Fellowship Sunday',
-                type: 'Fellowship Sunday',
-                date: 'March 2025',
-                month: 'March',
-                year: '2025',
-                description: 'Joining together for a time of worship and community.',
-                images: ['../images/Rectangle 4.png']
-            },
-            {
-                title: 'April Fellowship Sunday',
-                type: 'Fellowship Sunday',
-                date: 'April 2025',
-                month: 'April',
-                year: '2025',
-                description: 'A special Easter fellowship service.',
-                images: ['../images/book.png']
-            },
-            {
-                title: 'May Fellowship Sunday',
-                type: 'Fellowship Sunday',
-                date: 'May 2025',
-                month: 'May',
-                year: '2025',
-                description: 'Honoring mothers and family during our May fellowship.',
-                images: ['../images/ca1.png']
-            },
-            {
-                title: 'June Fellowship Sunday',
-                type: 'Fellowship Sunday',
-                date: 'June 2025',
-                month: 'June',
-                year: '2025',
-                description: 'Father\'s Day celebration at our monthly fellowship.',
-                images: ['../images/ca3.png']
-            },
-            {
-                title: 'July Fellowship Sunday',
-                type: 'Fellowship Sunday',
-                date: 'July 2025',
-                month: 'July',
-                year: '2025',
-                description: 'Summer worship and gathering.',
-                images: ['../images/pastor.jpg']
-            },
-            {
-                title: 'August Fellowship Sunday',
-                type: 'Fellowship Sunday',
-                date: 'August 2025',
-                month: 'August',
-                year: '2025',
-                description: 'A special worship session for the youth.',
-                images: ['../images/Rectangle 4.png']
-            },
-            {
-                title: 'September Fellowship Sunday',
-                type: 'Fellowship Sunday',
-                date: 'September 2025',
-                month: 'September',
-                year: '2025',
-                description: 'Back to school prayer and fellowship.',
-                images: ['../images/book.png']
-            },
-            {
-                title: 'October Fellowship Sunday',
-                type: 'Fellowship Sunday',
-                date: 'October 2025',
-                month: 'October',
-                year: '2025',
-                description: 'Celebrating grace and thanksgiving.',
-                images: ['../images/ca1.png']
-            },
-            {
-                title: 'November Fellowship Sunday',
-                type: 'Fellowship Sunday',
-                date: 'November 2025',
-                month: 'November',
-                year: '2025',
-                description: 'A time of deep prayer and reflection.',
-                images: ['../images/ca3.png']
-            },
-            {
-                title: 'December Fellowship Sunday',
-                type: 'Fellowship Sunday',
-                date: 'December 2025',
-                month: 'December',
-                year: '2025',
-                description: 'A final fellowship of the year, filled with joy.',
-                images: ['../images/pastor.jpg']
-            },
-            // Christmas Carol Competition
-            {
-                title: 'Christmas Carol Competition 2024',
-                type: 'Christmas Carol Competition',
-                date: 'December 2024',
-                month: 'December',
-                year: '2024',
-                description: 'Our annual competition of carols.',
-                images: ['../images/Rectangle 4.png']
-            },
-            // Halleluyah Party
-            {
-                title: 'Halleluyah Party 2024',
-                type: 'Halleluyah Party',
-                date: 'December 2024',
-                month: 'December',
-                year: '2024',
-                description: 'An end-of-year celebration filled with praise.',
-                images: ['../images/book.png']
-            },
-            // Baby Dedication
-            {
-                title: 'Baby Dedication - Smith Family',
-                type: 'Baby Dedication',
-                date: 'October 26, 2024',
-                month: 'October',
-                year: '2024',
-                description: 'The dedication of a child is a public commitment.',
-                images: ['../images/ca1.png']
-            },
-            {
-                title: 'Baby Dedication - Johnson Family',
-                type: 'Baby Dedication',
-                date: 'November 15, 2024',
-                month: 'November',
-                year: '2024',
-                description: 'A special day for the Johnson family.',
-                images: ['../images/ca3.png']
-            },
-            // Weddings
-            {
-                title: 'Wedding of John and Jane',
-                type: 'Weddings',
-                date: 'September 10, 2024',
-                month: 'September',
-                year: '2024',
-                description: 'Celebrating the union of John and Jane.',
-                images: ['../images/pastor.jpg']
-            },
-            {
-                title: 'Wedding of Mark and Mary',
-                type: 'Weddings',
-                date: 'October 5, 2024',
-                month: 'October',
-                year: '2024',
-                description: 'A joyous celebration for Mark and Mary.',
-                images: ['../images/Rectangle 4.png']
-            },
-            // Queen Esther
-            {
-                title: 'Queen Esther 2017',
-                type: 'Queen Esther',
-                date: '2017',
-                month: '',
-                year: '2017',
-                description: 'Celebrating our Queen Esther for the year 2017.',
-                images: ['../images/book.png']
-            },
-            {
-                title: 'Queen Esther 2016',
-                type: 'Queen Esther',
-                date: '2016',
-                month: '',
-                year: '2016',
-                description: 'Celebrating our Queen Esther for the year 2016.',
-                images: ['../images/ca1.png']
-            },
-            // Grace
-            {
-                title: 'Grace 2019',
-                type: 'Grace',
-                date: '2019',
-                month: '',
-                year: '2019',
-                description: 'A year of amazing grace.',
-                images: ['../images/ca3.png']
-            },
-            {
-                title: 'Grace 2018',
-                type: 'Grace',
-                date: '2018',
-                month: '',
-                year: '2018',
-                description: 'Showcasing the grace of God in our lives.',
-                images: ['../images/pastor.jpg']
-            },
-            // Christmas Lights
-            {
-                title: 'Christmas Lights 2024',
-                type: 'Christmas Lights',
-                date: 'December 2024',
-                month: 'December',
-                year: '2024',
-                description: 'Our church and community Christmas lights display.',
-                images: ['../images/Rectangle 4.png']
-            },
-        ];
+<script>
+const images = <?= json_encode($currentEvent['images'] ?? [], JSON_UNESCAPED_SLASHES) ?>;
+const imageBasePath = <?= json_encode($imageBasePath, JSON_UNESCAPED_SLASHES) ?>;
+let currentIndex = 0;
 
-        // Get references to the new filter dropdowns
-        const monthFilterSelect = document.getElementById('monthFilter');
-        const yearFilterSelect = document.getElementById('yearFilter');
-        const searchInput = document.getElementById('searchInput');
-        const eventTypeFilterSelect = document.getElementById('eventTypeFilter');
+function openModal(index) {
+    if (!images.length) return;
+    currentIndex = index;
+    document.getElementById('modalImage').src = imageBasePath + images[currentIndex];
+    new bootstrap.Modal(document.getElementById('imageModal')).show();
+}
 
-        // Months array for easier reference
-        const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+function nextImage() {
+    if (!images.length) return;
+    currentIndex = (currentIndex + 1) % images.length;
+    document.getElementById('modalImage').src = imageBasePath + images[currentIndex];
+}
 
-        /**
-         * Populates the month and year dropdowns based on the event data.
-         */
-        function populateFilters() {
-            const uniqueMonths = new Set();
-            const uniqueYears = new Set();
-
-            // Populate sets with unique months and years from event data
-            eventData.forEach(event => {
-                if (event.month) {
-                    uniqueMonths.add(event.month);
-                }
-                if (event.year) {
-                    uniqueYears.add(event.year);
-                }
-            });
-
-            // Sort months by order of the year, and years in descending order
-            const sortedMonths = months.filter(m => uniqueMonths.has(m));
-            const sortedYears = Array.from(uniqueYears).sort((a, b) => b - a);
-
-            // Populate the month dropdown
-            sortedMonths.forEach(month => {
-                const option = document.createElement('option');
-                option.value = month;
-                option.textContent = month;
-                monthFilterSelect.appendChild(option);
-            });
-
-            // Populate the year dropdown
-            sortedYears.forEach(year => {
-                const option = document.createElement('option');
-                option.value = year;
-                option.textContent = year;
-                yearFilterSelect.appendChild(option);
-            });
-        }
-
-        /**
-         * Filters the events based on search query and dropdown selections.
-         */
-        function filterEvents() {
-            const searchQuery = searchInput.value.toLowerCase();
-            const eventType = eventTypeFilterSelect.value;
-            const month = monthFilterSelect.value;
-            const year = yearFilterSelect.value;
-
-            const filtered = eventData.filter(item => {
-                // Search query match
-                const searchMatch = item.title.toLowerCase().includes(searchQuery) ||
-                    item.description.toLowerCase().includes(searchQuery);
-
-                // Event type match
-                const typeMatch = eventType === '' || item.type === eventType;
-
-                // Month match
-                const monthMatch = month === '' || item.month === month;
-
-                // Year match
-                const yearMatch = year === '' || item.year === year;
-
-                return searchMatch && typeMatch && monthMatch && yearMatch;
-            });
-
-            renderGallery(filtered);
-        }
-
-        /**
-         * Renders the event cards in the gallery.
-         */
-        function renderGallery(items) {
-            const gallery = document.getElementById('eventsGallery');
-            gallery.innerHTML = '';
-
-            if (items.length === 0) {
-                gallery.innerHTML = '<div class="col-12 text-center text-muted py-5"><p>No events found matching your criteria.</p></div>';
-                return;
-            }
-
-            items.forEach(item => {
-                // Escape single quotes for the onclick function call
-                const safeTitle = item.title.replace(/'/g, "\\'");
-                const safeDescription = item.description.replace(/'/g, "\\'");
-                const safeImages = JSON.stringify(item.images).replace(/"/g, "'");
-
-                const cardHtml = `
-                    <div class="col">
-                        <div class="card h-100 shadow-sm rounded-3 hover-shadow" onclick="openEventModal('${safeTitle}', '${safeDescription}', '${item.type}', '${item.date}', ${safeImages})">
-                            <img src="${item.images[0]}" class="card-img-top rounded-top-3" alt="${item.title}" style="height: 250px; object-fit: cover;">
-                            <div class="card-body">
-                                <h5 class="card-title fw-bold">${item.title}</h5>
-                                <p class="card-text text-secondary">${item.description}</p>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                gallery.innerHTML += cardHtml;
-            });
-        }
-
-        /**
-         * Opens the modal with the details of the selected event.
-         */
-        function openEventModal(title, description, type, date, images) {
-            // Set the content of the modal
-            document.getElementById('eventModalLabel').textContent = title;
-            document.getElementById('modalDescription').textContent = description;
-            document.getElementById('modalEventType').textContent = `Event Type: ${type}`;
-            document.getElementById('modalDate').textContent = `Date: ${date}`;
-
-            // Clear previous thumbnails
-            const carousel = document.getElementById('modalCarousel');
-            carousel.innerHTML = '';
-
-            // Set the main image and populate the carousel
-            if (images && images.length > 0) {
-                document.getElementById('modalMainImage').src = images[0];
-                document.getElementById('modalMainImage').alt = title + ' 1';
-
-                images.forEach((imageSrc, index) => {
-                    const imgElement = document.createElement('img');
-                    imgElement.src = imageSrc;
-                    imgElement.alt = `${title} ${index + 1}`;
-                    imgElement.classList.add('img-thumbnail', 'rounded-3');
-                    // Add custom width/height and cursor style
-                    imgElement.style.width = '100px';
-                    imgElement.style.height = '60px';
-                    imgElement.style.cursor = 'pointer';
-                    imgElement.style.opacity = '0.7';
-
-                    if (index === 0) {
-                        imgElement.classList.add('active');
-                        imgElement.style.border = '2px solid #ffc107';
-                        imgElement.style.opacity = '1';
-                    }
-                    imgElement.onclick = () => changeMainImage(imageSrc, imgElement);
-                    carousel.appendChild(imgElement);
-                });
-            }
-
-            // Create a new Bootstrap modal instance and show it
-            const eventModal = new bootstrap.Modal(document.getElementById('eventModal'));
-            eventModal.show();
-        }
-
-        /**
-         * Changes the main image in the modal when a thumbnail is clicked.
-         */
-        function changeMainImage(imageSrc, clickedThumb) {
-            const mainImage = document.getElementById('modalMainImage');
-            mainImage.src = imageSrc;
-
-            // Update active state on thumbnails
-            const thumbnails = document.querySelectorAll('#modalCarousel img');
-            thumbnails.forEach(thumb => {
-                thumb.classList.remove('active');
-                thumb.style.border = '';
-                thumb.style.opacity = '0.7';
-            });
-
-            clickedThumb.classList.add('active');
-            clickedThumb.style.border = '2px solid #ffc107';
-            clickedThumb.style.opacity = '1';
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            populateFilters();
-            renderGallery(eventData);
-        });
-    </script>
+function prevImage() {
+    if (!images.length) return;
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    document.getElementById('modalImage').src = imageBasePath + images[currentIndex];
+}
+</script>
 </body>
-
 </html>

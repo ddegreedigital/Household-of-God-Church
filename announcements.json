@@ -1,0 +1,15 @@
+
+[
+  {
+    "title": "Sunday Worship Service",
+    "date": "October 12, 2025",
+    "description": "Join us for our Sunday service at 9 AM in the main auditorium.",
+    "image": "images/events/image1.jpg"
+  },
+  {
+     "title": "Youth Fellowship",
+    "date": "October 15, 2025",
+    "description": "Special youth gathering and worship night.",
+    "image": "images/events/image5.jpg"
+  }
+]
