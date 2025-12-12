@@ -37,14 +37,18 @@ export default function RootLayout({ children }) {
           crossOrigin="anonymous"
         />
         <link
+          href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css"
+          rel="stylesheet"
+        />
+        <link
           href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
           rel="stylesheet"
         />
         {/* FOR SOME LOOSE CSS ERRORS  , BELOW IS Tailwind */}
-        <link
+        {/* <link
           href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
           rel="stylesheet"
-        ></link>
+        ></link> */}
         <script
           src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
           crossOrigin="anonymous"
